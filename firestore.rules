@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /news/{newsId} {
+      // Les visiteurs peuvent uniquement lire les actualités publiées.
+      allow read: if resource.data.published == true || isAdmin();
+      // Seul le compte administrateur indiqué ci-dessous peut créer/modifier/supprimer.
+      allow create, update, delete: if isAdmin();
+    }
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.uid == "StxrZBDeUodj7YVPmXRA2AbWcUF2";
+    }
+  }
+}

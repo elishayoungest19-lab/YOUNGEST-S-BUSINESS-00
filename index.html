@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="description" content="YOUNGEST'S BUSINESS — transfert d'argent via Mobile Money au Burundi et en RDC, aide financière et service de prêt d'argent au Burundi.">
+<title>YOUNGEST'S BUSINESS | Service de prêt & assistance financière</title>
+<style>
+:root{--navy:#06264a;--blue:#0756a8;--green:#3b8f18;--gold:#d6a22b;--light:#f5f8fc;--text:#1f2d3d;--white:#fff}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text);line-height:1.65}
+nav{position:sticky;top:0;z-index:20;background:rgba(6,38,74,.98);color:#fff;padding:10px 5%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 3px 15px #0003}
+.logo{height:54px;width:auto;display:block;object-fit:contain}
+nav .links{display:flex;gap:18px;align-items:center}
+nav a{color:#fff;text-decoration:none;font-size:14px;font-weight:700}
+nav a:hover{color:#f3c55c}
+.hero{background:linear-gradient(135deg,#041d38 0%,#0756a8 70%,#3b8f18 130%);color:#fff;padding:82px 7%}
+.wrap{max-width:1150px;margin:auto}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:38px;align-items:center}
+.badge{display:inline-block;padding:7px 12px;border:1px solid #ffffff55;border-radius:999px;font-weight:700;color:#f7cf65}
+h1{font-size:clamp(38px,6vw,67px);line-height:1.03;margin:15px 0}
+.hero p{font-size:19px;max-width:760px}
+.btn{display:inline-block;padding:13px 20px;border-radius:9px;text-decoration:none;font-weight:800;margin:8px 8px 0 0;border:0;cursor:pointer}
+.primary{background:var(--gold);color:#14253a}.outline{border:1px solid #fff;color:#fff}
+.hero-card,.card{background:#fff;color:var(--text);border-radius:18px;padding:25px;box-shadow:0 12px 35px #001a3320}
+.hero-card h2{color:var(--navy)}
+section{padding:72px 7%}.title{text-align:center;margin-bottom:38px}.title h2{font-size:34px;color:var(--navy);margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service .icon{font-size:34px}.service h3{color:var(--blue)}
+.about{background:#fff}.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.region{background:#eef6ff}.region .card{height:100%}
+.loan{background:#f0f7ed}.loan-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.notice{background:#fff8e7;border-left:4px solid var(--gold);padding:15px;border-radius:6px}
+.steps{counter-reset:step}.steps li{margin:10px 0}
+.documents{background:#fff}.docs-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.docs-grid img{width:100%;height:500px;object-fit:contain;background:#f1f3f5;border-radius:12px;border:1px solid #d8dee6}
+.doc-actions{text-align:center;margin-top:10px}
+.form-section{background:#eef6ff}
+form{display:grid;gap:10px}input,select,textarea{width:100%;padding:13px;border:1px solid #c9d4df;border-radius:8px;font:inherit}textarea{min-height:120px}
+.contact{background:var(--navy);color:#fff}.contact .title h2{color:#fff}
+.contact-box{display:grid;grid-template-columns:1fr 1fr;gap:30px}.contact a{color:#f3c55c}
+footer{background:#03162a;color:#c9d5e2;text-align:center;padding:26px 7%}
+.small{font-size:13px;color:#687789}
+footer strong{color:#fff}
+@media(max-width:850px){nav{flex-wrap:wrap;gap:8px}.links{width:100%;overflow:auto;white-space:nowrap;padding-bottom:3px}.hero-grid,.two,.loan-grid,.docs-grid,.contact-box{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.hero{padding-top:58px}.docs-grid img{height:auto;max-height:none}}
+
+.news-section{background:#f7f9fc}
+.news-kicker{display:inline-block;color:var(--green);font-weight:800;font-size:13px;letter-spacing:.08em;margin-bottom:8px}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.news-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 28px #001a3318;border:1px solid #e3e9f0;display:flex;flex-direction:column}
+.news-card img{width:100%;height:190px;object-fit:cover;background:#eaf0f6}
+.news-body{padding:21px}
+.news-date{font-size:12px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.05em}
+.news-card h3{color:var(--navy);font-size:21px;line-height:1.25;margin:8px 0}
+.news-card p{margin:0 0 14px}
+.news-empty{grid-column:1/-1;text-align:center;background:#fff;border:1px dashed #c8d3df;padding:30px;border-radius:15px;color:#647386}
+.admin-link{color:#f3c55c;text-decoration:none;font-size:12px}
+@media(max-width:850px){.news-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#accueil"><img class="logo" src="logo.png" alt="YOUNGEST'S BUSINESS"></a>
+  <div class="links">
+    <a href="#services">Services</a>
+    <a href="#zones">Zones</a>
+    <a href="#pret">Prêts</a>
+    <a href="#documents">Documents</a>
+    <a href="#actualites">Actualités</a><a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header id="accueil" class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge">SERVICE DE PRÊT ET D’ASSISTANCE FINANCIÈRE</span>
+      <h1>YOUNGEST’S BUSINESS</h1>
+      <p><strong>Des services de proximité, une vision entrepreneuriale.</strong></p>
+      <p>Nous sommes un service basé dans le transfert d'argent via Mobile Money. Nous accompagnons également les personnes dans leurs besoins d'aide financière, notamment à travers notre service de prêt d'argent au Burundi.</p>
+      <a class="btn primary" href="#pret">Découvrir le service de prêt</a>
+      <a class="btn outline" href="#contact">Nous contacter</a>
+    </div>
+    <div class="hero-card">
+      <h2>Notre présence</h2>
+      <p><strong>🇧🇮 Burundi :</strong> transfert d'argent via Mobile Money et service de prêt d'argent.</p>
+      <p><strong>🇨🇩 RDC :</strong> transfert d'argent et services Mobile Money.</p>
+      <p>Notre ambition est de développer progressivement des services fiables, accessibles et adaptés aux besoins de nos clients.</p>
+    </div>
+  </div>
+</header>
+
+<section id="services">
+<div class="wrap">
+  <div class="title"><h2>Nos services</h2><p>Une activité organisée autour de services financiers et de proximité.</p></div>
+  <div class="grid">
+    <div class="card service"><div class="icon">💸</div><h3>Transfert d'argent</h3><p>Services de transfert d'argent via les solutions Mobile Money disponibles dans nos zones d'activité.</p></div>
+    <div class="card service"><div class="icon">📱</div><h3>Mobile Money</h3><p>Dépôt, retrait, enregistrement et autres opérations selon les services et opérateurs disponibles.</p></div>
+    <div class="card service"><div class="icon">💰</div><h3>Prêt d'argent</h3><p>Un service destiné aux personnes ayant besoin d'un financement, avec une procédure et des conditions définies avant l'opération.</p></div>
+    <div class="card service"><div class="icon">🔄</div><h3>Swap direct</h3><p>Solutions d'échange et opérations de proximité selon les possibilités disponibles.</p></div>
+    <div class="card service"><div class="icon">🔐</div><h3>Assistance Mobile Money</h3><p>Accompagnement pour certaines opérations de compte, de mise à jour ou de récupération selon les procédures autorisées.</p></div>
+    <div class="card service"><div class="icon">🌍</div><h3>Développement régional</h3><p>Une vision de croissance progressive au Burundi, en RDC et à terme dans d'autres marchés de la région.</p></div>
+  </div>
+</div>
+</section>
+
+<section id="zones" class="region">
+<div class="wrap">
+  <div class="title"><h2>Nos zones d'activité</h2><p>YOUNGEST'S BUSINESS est présent au Burundi et en RDC.</p></div>
+  <div class="two">
+    <div class="card">
+      <h3>🇧🇮 Burundi</h3>
+      <p>Nous sommes présents à :</p>
+      <ul><li>Cibitoke — 4e Avenue</li><li>Cibitoke — 17e Avenue</li><li>Carama — Bujumbura</li></ul>
+      <p><strong>Service :</strong> transfert d'argent, Mobile Money et service de prêt.</p>
+      <p><strong>Contact :</strong><br>+257 667 966 15</p>
+    </div>
+    <div class="card">
+      <h3>🇨🇩 République démocratique du Congo</h3>
+      <p>Nous sommes présents à :</p>
+      <ul><li>Kalemie — Kahinda Lodje</li><li>Maniema</li><li>Fizi</li></ul>
+      <p><strong>Service :</strong> transfert d'argent et services Mobile Money.</p>
+      <p><strong>Contacts :</strong><br>+243 817 447 127<br>+243 994 565 534</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="pret" class="loan">
+<div class="wrap">
+  <div class="title"><h2>Service de prêt d'argent</h2><p>Un processus clair avant toute décision de financement.</p></div>
+  <div class="loan-grid">
+    <div class="card">
+      <h3>Conditions principales</h3>
+      <ol class="steps">
+        <li>Lire et compléter la lettre d'engagement.</li>
+        <li>Prendre connaissance du taux et accepter les conditions convenues.</li>
+        <li>Présenter une garantie conforme aux conditions du prêt.</li>
+        <li>Respecter les consignes et le délai prévu pour le remboursement.</li>
+      </ol>
+      <div class="notice"><strong>Important :</strong> les taux, garanties, frais, échéances et modalités définitives doivent être confirmés avant signature et doivent respecter la réglementation applicable.</div>
+    </div>
+    <div class="card">
+      <h3>Comment demander un prêt ?</h3>
+      <p>1. Remplissez la fiche de demande.</p>
+      <p>2. Préparez les informations et pièces demandées.</p>
+      <p>3. Prenez connaissance des conditions.</p>
+      <p>4. Soumettez votre demande pour étude.</p>
+      <a class="btn primary" href="#demande">Remplir une demande en ligne</a>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="documents" class="documents">
+<div class="wrap">
+  <div class="title"><h2>Documents du service de prêt</h2><p>Les documents que nous utilisons pour encadrer la demande et l'engagement.</p></div>
+  <div class="docs-grid">
+    <div class="card">
+      <h3>Fiche de demande / lettre d'engagement</h3>
+      <img src="fiche_demande_pret.png" alt="Fiche de demande et lettre d'engagement YOUNGEST'S BUSINESS">
+      <div class="doc-actions"><a class="btn primary" href="fiche_demande_pret.png" download>Télécharger la fiche</a></div>
+    </div>
+    <div class="card">
+      <h3>Conditions d'emprunt</h3>
+      <img src="conditions_pret.jpg" alt="Conditions d'emprunt YOUNGEST'S BUSINESS">
+      <div class="doc-actions"><a class="btn primary" href="conditions_pret.jpg" download>Télécharger les conditions</a></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="demande" class="form-section">
+<div class="wrap">
+  <div class="title"><h2>Demande d'information / de prêt</h2><p>Votre demande sera transmise par WhatsApp. Elle ne constitue pas une acceptation automatique du prêt.</p></div>
+  <div class="card">
+    <form onsubmit="sendLoan(event)">
+      <div class="two">
+        <input id="nom" required placeholder="Nom et prénom">
+        <input id="tel" required placeholder="Téléphone / WhatsApp">
+      </div>
+      <div class="two">
+        <input id="montant" required placeholder="Montant souhaité">
+        <input id="duree" required placeholder="Durée souhaitée (jours / mois)">
+      </div>
+      <input id="activite" placeholder="Profession / activité">
+      <input id="garantie" placeholder="Garantie proposée (si applicable)">
+      <textarea id="objet" required placeholder="Objet / besoin du financement"></textarea>
+      <button class="btn primary" type="submit">Envoyer la demande sur WhatsApp</button>
+    </form>
+  </div>
+</div>
+</section>
+
+
+<section id="actualites" class="news-section">
+<div class="wrap">
+  <div class="title">
+    <span class="news-kicker">📰 INFORMATIONS & NOUVEAUTÉS</span>
+    <h2>Actualités de YOUNGEST’S BUSINESS</h2>
+    <p>Retrouvez ici nos annonces, nouveautés, informations importantes et évolutions.</p>
+  </div>
+  <div id="news-list" class="news-grid"></div>
+</div>
+</section>
+
+<section id="apropos" class="about">
+<div class="wrap two">
+  <div>
+    <h2>À propos de YOUNGEST’S BUSINESS</h2>
+    <p>YOUNGEST’S BUSINESS est une initiative entrepreneuriale portée par <strong>Elisha Youngest</strong>, avec l'ambition de construire une entreprise structurée autour de services utiles à la communauté.</p>
+    <p>Notre activité associe les services de transfert d'argent et Mobile Money à un accompagnement financier, notamment le prêt d'argent au Burundi.</p>
+    <p>Nous voulons grandir progressivement, renforcer la confiance de nos clients et développer des outils modernes pour mieux suivre les opérations.</p>
+  </div>
+  <div class="card">
+    <h3>Nos valeurs</h3>
+    <ul>
+      <li>Intégrité et transparence</li>
+      <li>Respect du client</li>
+      <li>Responsabilité</li>
+      <li>Service de proximité</li>
+      <li>Organisation et suivi</li>
+      <li>Vision à long terme</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+  <div class="title"><h2>Notre vision</h2><p>Grandir avec méthode, au service de nos clients.</p></div>
+  <div class="grid">
+    <div class="card"><h3>Aujourd'hui</h3><p>Développer des services de transfert, Mobile Money et de financement de proximité.</p></div>
+    <div class="card"><h3>Demain</h3><p>Améliorer le suivi des clients, les outils numériques et la qualité de nos opérations.</p></div>
+    <div class="card"><h3>À long terme</h3><p>Construire une entreprise durable, créatrice d'opportunités et capable d'évoluer avec les besoins de la communauté.</p></div>
+  </div>
+</div>
+</section>
+
+<section id="contact" class="contact">
+<div class="wrap">
+  <div class="title"><h2>Contactez YOUNGEST’S BUSINESS</h2><p>Nous sommes à votre disposition pour vos demandes d'information.</p></div>
+  <div class="contact-box">
+    <div>
+      <h3>WhatsApp & Téléphone</h3>
+      <p>🇨🇩 <a href="https://wa.me/243817447127">+243 817 447 127</a></p>
+      <p>🇧🇮 <a href="https://wa.me/25766796615">+257 667 966 15</a></p>
+      <p>🇨🇩 <a href="https://wa.me/243994565534">+243 994 565 534</a></p>
+      <h3>📧 E-mail</h3>
+      <p><a href="mailto:elishayoungest19@gmail.com">elishayoungest19@gmail.com</a></p>
+    </div>
+    <div>
+      <h3>📍 Nos adresses</h3>
+      <p><strong>🇧🇮 Burundi</strong><br>Cibitoke — 4e Avenue<br>Cibitoke — 17e Avenue<br>Carama — Bujumbura</p>
+      <p><strong>🇨🇩 RDC</strong><br>Kalemie — Kahinda Lodje<br>Maniema<br>Fizi</p>
+    </div>
+  </div>
+  <div class="contact-box" style="margin-top:25px">
+    <div class="card"><h3>WhatsApp Burundi</h3><a class="btn primary" href="https://wa.me/25766796615?text=Bonjour%20YOUNGEST'S%20BUSINESS,%20je%20souhaite%20avoir%20des%20informations.">Écrire sur WhatsApp</a></div>
+    <div class="card"><h3>WhatsApp RDC</h3><a class="btn primary" href="https://wa.me/243817447127?text=Bonjour%20YOUNGEST'S%20BUSINESS,%20je%20souhaite%20avoir%20des%20informations.">Écrire sur WhatsApp</a></div>
+  </div>
+</div>
+</section>
+
+<footer>© 2026 <strong>YOUNGEST’S BUSINESS</strong> — Votre satisfaction, notre priorité !<br><a class="admin-link" href="admin.html">Espace administration</a></footer>
+
+<script>
+
+const DEFAULT_NEWS = [
+  {id:"welcome-2026",date:"13 août 2026",title:"Bienvenue sur le site officiel de YOUNGEST’S BUSINESS",text:"Notre site officiel est maintenant en ligne. Retrouvez nos services, nos zones d’activité, les informations sur le service de prêt et nos moyens de contact.",image:"logo.png"},
+  {id:"services",date:"13 août 2026",title:"Nos services financiers et de proximité",text:"YOUNGEST’S BUSINESS développe ses services autour du transfert d’argent, du Mobile Money et de l’accompagnement financier.",image:"logo.png"}
+];
+
+function renderNews(news){
+  const list=document.getElementById("news-list"); if(!list)return;
+  list.innerHTML=(news.length?news:DEFAULT_NEWS).map(n=>`<article class="news-card"><img src="${escapeHtml(n.image||"logo.png")}" alt=""><div class="news-body"><div class="news-date">${escapeHtml(n.date||"")}</div><h3>${escapeHtml(n.title||"")}</h3><p>${escapeHtml(n.text||"")}</p></div></article>`).join("");
+}
+function escapeHtml(value){return String(value??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));}
+
+// Lecture publique des actualités publiées dans Cloud Firestore.
+(function(){
+  const s=document.createElement('script');s.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js';s.onload=()=>{
+    const a=document.createElement('script');a.src='https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js';a.onload=()=>{
+      const c=document.createElement('script');c.src='firebase-config.js';c.onload=async()=>{
+        try{firebase.initializeApp(firebaseConfig);const db=firebase.firestore();const snap=await db.collection('news').where('published','==',true).get();const news=snap.docs.map(d=>({id:d.id,...d.data()}));news.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));renderNews(news);}catch(e){renderNews(DEFAULT_NEWS)}
+      };c.onerror=()=>renderNews(DEFAULT_NEWS);document.head.appendChild(c);
+    };a.onerror=()=>renderNews(DEFAULT_NEWS);document.head.appendChild(a);
+  };s.onerror=()=>renderNews(DEFAULT_NEWS);document.head.appendChild(s);
+})();
+
+function sendLoan(e){
+ e.preventDefault();
+ const text = encodeURIComponent(
+   "Bonjour YOUNGEST'S BUSINESS,%0A%0A"+
+   "DEMANDE D'INFORMATION / DE PRÊT%0A"+
+   "Nom : "+document.getElementById("nom").value+"%0A"+
+   "Téléphone : "+document.getElementById("tel").value+"%0A"+
+   "Montant : "+document.getElementById("montant").value+"%0A"+
+   "Durée : "+document.getElementById("duree").value+"%0A"+
+   "Activité : "+document.getElementById("activite").value+"%0A"+
+   "Garantie : "+document.getElementById("garantie").value+"%0A"+
+   "Objet : "+document.getElementById("objet").value
+ );
+ window.open("https://wa.me/25766796615?text="+text,"_blank");
+}
+</script>
+</body>
+</html>

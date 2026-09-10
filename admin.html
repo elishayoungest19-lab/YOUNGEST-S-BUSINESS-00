@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Administration — YOUNGEST’S BUSINESS</title>
+<style>
+:root{--navy:#06264a;--blue:#0756a8;--green:#3b8f18;--gold:#d6a22b;--light:#f5f8fc;--text:#1f2d3d;--danger:#a52828}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text)}
+header{background:var(--navy);color:#fff;padding:22px 6%}header h1{margin:0;font-size:25px}header p{margin:5px 0 0;opacity:.85}
+main{max-width:1000px;margin:30px auto;padding:0 18px}.panel{background:#fff;border-radius:16px;padding:24px;box-shadow:0 10px 30px #001a3315;margin-bottom:22px}
+label{display:block;font-weight:700;margin:12px 0 6px}input,textarea{width:100%;padding:12px;border:1px solid #ccd7e2;border-radius:8px;font:inherit}textarea{min-height:130px}
+button,.btn{display:inline-block;border:0;border-radius:8px;padding:12px 17px;font-weight:800;cursor:pointer;text-decoration:none}.primary{background:var(--gold);color:#17273b}.secondary{background:#e8eef5;color:var(--navy)}.danger{background:#f8e1e1;color:var(--danger)}
+.news{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.item{border:1px solid #dde5ed;border-radius:12px;padding:16px}.item h3{margin:5px 0}.item small{color:var(--green);font-weight:700}.item button{margin-top:10px}.item img{width:100%;height:150px;object-fit:cover;border-radius:9px;margin:8px 0}
+.notice{background:#fff8e7;border-left:4px solid var(--gold);padding:13px;border-radius:6px}.success{background:#e9f8ed;border-left:4px solid var(--green);padding:13px;border-radius:6px}.error{background:#fdecec;border-left:4px solid var(--danger);padding:13px;border-radius:6px}
+#app{display:none}.muted{color:#647386;font-size:14px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.topbar{display:flex;justify-content:space-between;gap:12px;align-items:center}.thumb{max-width:120px;max-height:90px;border-radius:8px;object-fit:cover}.hidden{display:none}
+@media(max-width:700px){.news{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>YOUNGEST’S BUSINESS — Administration</h1><p>Gestion sécurisée de la rubrique Actualités</p></header>
+<main>
+  <div id="loginPanel" class="panel">
+    <h2>🔐 Connexion administrateur</h2>
+    <p class="muted">Seul un compte Firebase autorisé pourra publier, modifier ou supprimer les actualités.</p>
+    <label for="email">E-mail administrateur</label><input id="email" type="email" autocomplete="username" placeholder="votre@email.com">
+    <label for="password">Mot de passe</label><input id="password" type="password" autocomplete="current-password" placeholder="Votre mot de passe">
+    <button class="primary" onclick="login()">Se connecter</button>
+    <div id="loginMsg" style="margin-top:14px"></div>
+  </div>
+
+  <div id="app">
+    <div class="panel">
+      <div class="topbar"><div><h2 style="margin:0">🔐 Administration connectée</h2><p id="who" class="muted"></p></div><button class="secondary" onclick="logout()">Se déconnecter</button></div>
+      <div class="notice" style="margin-top:15px"><strong>Important :</strong> les publications sont maintenant enregistrées dans Cloud Firestore. Elles pourront donc être vues par tous les visiteurs, quel que soit leur téléphone.</div>
+    </div>
+
+    <div class="panel">
+      <h2>➕ Nouvelle actualité</h2>
+      <label for="title">Titre</label><input id="title" placeholder="Ex. Nouvelle agence à Cibitoke">
+      <label for="date">Date d'affichage</label><input id="date" type="date">
+      <label for="imageFile">Image (facultatif)</label><input id="imageFile" type="file" accept="image/*">
+      <p class="muted">L’image est automatiquement réduite dans votre navigateur puis enregistrée directement dans Firestore. Aucun Firebase Storage ni abonnement Blaze n’est nécessaire. Si aucune image n’est choisie, le logo sera utilisé.</p>
+      <label for="text">Contenu</label><textarea id="text" placeholder="Écrivez votre annonce..."></textarea>
+      <div class="row"><button class="primary" onclick="addNews()">📢 Publier pour tous</button><a class="btn secondary" href="index.html">Voir le site public</a></div>
+      <div id="publishMsg" style="margin-top:14px"></div>
+    </div>
+
+    <div class="panel">
+      <h2>📋 Actualités en ligne</h2>
+      <div id="items" class="news"></div>
+    </div>
+  </div>
+</main>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+<script>
+let db,auth,currentUser;
+try{
+  firebase.initializeApp(firebaseConfig); auth=firebase.auth(); db=firebase.firestore();
+  auth.onAuthStateChanged(async user=>{
+    currentUser=user;
+    const isSignedIn=!!user;
+    document.getElementById('loginPanel').style.display=isSignedIn?'none':'block';
+    document.getElementById('app').style.display=isSignedIn?'block':'none';
+    if(user){document.getElementById('who').textContent='Connecté : '+user.email+' • UID : '+user.uid; await render();}
+  });
+}catch(e){document.getElementById('loginMsg').innerHTML='<div class="error">Configuration Firebase manquante ou incorrecte. Consultez le fichier SETUP_FIREBASE.md.</div>'}
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function login(){const email=document.getElementById('email').value.trim(),password=document.getElementById('password').value; if(!email||!password){show('loginMsg','Veuillez saisir l’e-mail et le mot de passe.','error');return} auth.signInWithEmailAndPassword(email,password).catch(e=>show('loginMsg','Connexion refusée : '+humanError(e),'error'))}
+function logout(){auth.signOut()}
+function humanError(e){if(e.code==='auth/invalid-credential')return 'e-mail ou mot de passe incorrect.';if(e.code==='auth/too-many-requests')return 'Trop de tentatives. Réessayez plus tard.';return e.message||'Erreur inconnue.'}
+function show(id,msg,type){document.getElementById(id).innerHTML='<div class="'+type+'">'+esc(msg)+'</div>'}
+async function imageToFirestoreDataUrl(file){
+  if(!file)return 'logo.png';
+  if(!file.type.startsWith('image/'))throw new Error('Veuillez choisir un fichier image.');
+  if(file.size>10*1024*1024)throw new Error('L’image originale doit faire au maximum 10 Mo.');
+  const dataUrl=await new Promise((resolve,reject)=>{
+    const r=new FileReader(); r.onload=()=>resolve(r.result); r.onerror=()=>reject(new Error('Impossible de lire l’image.')); r.readAsDataURL(file);
+  });
+  const img=await new Promise((resolve,reject)=>{
+    const i=new Image(); i.onload=()=>resolve(i); i.onerror=()=>reject(new Error('Impossible de traiter l’image.')); i.src=dataUrl;
+  });
+  const maxSide=1000;
+  const scale=Math.min(1,maxSide/Math.max(img.width,img.height));
+  const w=Math.max(1,Math.round(img.width*scale)),h=Math.max(1,Math.round(img.height*scale));
+  const canvas=document.createElement('canvas'); canvas.width=w; canvas.height=h;
+  const ctx=canvas.getContext('2d'); ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,w,h); ctx.drawImage(img,0,0,w,h);
+  let quality=.72, out='';
+  for(let i=0;i<5;i++){
+    out=canvas.toDataURL('image/jpeg',quality);
+    if(out.length<=520000)break;
+    quality-=.10;
+  }
+  if(out.length>600000)throw new Error('Cette image reste trop lourde après compression. Choisissez une image plus petite.');
+  return out;
+}
+
+async function addNews(){
+ if(!currentUser)return;
+ const title=document.getElementById('title').value.trim(),date=document.getElementById('date').value,text=document.getElementById('text').value.trim(),file=document.getElementById('imageFile').files[0];
+ if(!title||!date||!text){show('publishMsg','Veuillez remplir le titre, la date et le contenu.','error');return}
+ const btn=document.querySelector('#app .primary');btn.disabled=true;show('publishMsg','Préparation de l’image et publication…','notice');
+ try{
+   const image=await imageToFirestoreDataUrl(file);
+   await db.collection('news').add({title,date,text,image,published:true,createdAt:firebase.firestore.FieldValue.serverTimestamp(),createdBy:currentUser.uid});
+   document.getElementById('title').value='';document.getElementById('text').value='';document.getElementById('imageFile').value='';show('publishMsg','✅ Actualité publiée. Elle est maintenant disponible sur le site public.','success');await render();
+ }catch(e){show('publishMsg','Publication impossible : '+humanError(e),'error')}finally{btn.disabled=false}
+}
+async function render(){
+ const box=document.getElementById('items');box.innerHTML='<p class="muted">Chargement…</p>';
+ try{const snap=await db.collection('news').get();const docs=snap.docs.map(d=>({id:d.id,...d.data()}));docs.sort((a,b)=>(b.createdAt?.seconds||0)-(a.createdAt?.seconds||0));
+ box.innerHTML=docs.length?docs.map(x=>`<div class="item">${x.image?`<img src="${esc(x.image)}" alt="">`:''}<small>${esc(x.date)}</small><h3>${esc(x.title)}</h3><p>${esc(x.text)}</p><div class="row"><button class="danger" onclick="removeNews('${esc(x.id)}')">Supprimer</button></div></div>`).join(''):'<p class="muted">Aucune actualité publiée pour le moment.</p>';
+ }catch(e){box.innerHTML='<div class="error">Impossible de charger les actualités : '+esc(humanError(e))+'</div>'}
+}
+async function removeNews(id){if(!confirm('Supprimer définitivement cette actualité ?'))return;try{await db.collection('news').doc(id).delete();await render()}catch(e){alert('Suppression refusée : '+humanError(e))}}
+</script>
+</body>
+</html>
