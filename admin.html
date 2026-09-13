@@ -2,637 +2,400 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Administration — YOUNGEST’S BUSINESS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="description" content="YOUNGEST'S BUSINESS — transfert d'argent via Mobile Money au Burundi et en RDC, aide financière et service de prêt d'argent au Burundi.">
+<title>YOUNGEST'S BUSINESS | Service de prêt & assistance financière</title>
 
 <style>
-:root{
-  --navy:#06264a;
-  --blue:#0756a8;
-  --green:#3b8f18;
-  --gold:#d6a22b;
-  --light:#f5f8fc;
-  --text:#1f2d3d;
-  --danger:#a52828
+:root{--navy:#06264a;--blue:#0756a8;--green:#3b8f18;--gold:#d6a22b;--light:#f5f8fc;--text:#1f2d3d;--white:#fff}
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:var(--text);line-height:1.65}
+nav{position:sticky;top:0;z-index:20;background:rgba(6,38,74,.98);color:#fff;padding:10px 5%;display:flex;align-items:center;justify-content:space-between;box-shadow:0 3px 15px #0003}
+.logo{height:54px;width:auto;display:block;object-fit:contain}
+nav .links{display:flex;gap:18px;align-items:center}
+nav a{color:#fff;text-decoration:none;font-size:14px;font-weight:700}
+nav a:hover{color:#f3c55c}
+.hero{background:linear-gradient(135deg,#041d38 0%,#0756a8 70%,#3b8f18 130%);color:#fff;padding:82px 7%}
+.wrap{max-width:1150px;margin:auto}
+.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:38px;align-items:center}
+.badge{display:inline-block;padding:7px 12px;border:1px solid #ffffff55;border-radius:999px;font-weight:700;color:#f7cf65}
+h1{font-size:clamp(38px,6vw,67px);line-height:1.03;margin:15px 0}
+.hero p{font-size:19px;max-width:760px}
+.btn{display:inline-block;padding:13px 20px;border-radius:9px;text-decoration:none;font-weight:800;margin:8px 8px 0 0;border:0;cursor:pointer}
+.primary{background:var(--gold);color:#14253a}
+.outline{border:1px solid #fff;color:#fff}
+.hero-card,.card{background:#fff;color:var(--text);border-radius:18px;padding:25px;box-shadow:0 12px 35px #001a3320}
+.hero-card h2{color:var(--navy)}
+section{padding:72px 7%}
+.title{text-align:center;margin-bottom:38px}
+.title h2{font-size:34px;color:var(--navy);margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service .icon{font-size:34px}
+.service h3{color:var(--blue)}
+.about{background:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.region{background:#eef6ff}
+.region .card{height:100%}
+.loan{background:#f0f7ed}
+.loan-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.notice{background:#fff8e7;border-left:4px solid var(--gold);padding:15px;border-radius:6px}
+.steps{counter-reset:step}
+.steps li{margin:10px 0}
+.documents{background:#fff}
+.docs-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px}
+.docs-grid img{width:100%;height:500px;object-fit:contain;background:#f1f3f5;border-radius:12px;border:1px solid #d8dee6}
+.doc-actions{text-align:center;margin-top:10px}
+.form-section{background:#eef6ff}
+form{display:grid;gap:10px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #c9d4df;border-radius:8px;font:inherit}
+textarea{min-height:120px}
+.contact{background:var(--navy);color:#fff}
+.contact .title h2{color:#fff}
+.contact-box{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.contact a{color:#f3c55c}
+footer{background:#03162a;color:#c9d5e2;text-align:center;padding:26px 7%}
+.small{font-size:13px;color:#687789}
+footer strong{color:#fff}
+@media(max-width:850px){
+nav{flex-wrap:wrap;gap:8px}
+.links{width:100%;overflow:auto;white-space:nowrap;padding-bottom:3px}
+.hero-grid,.two,.loan-grid,.docs-grid,.contact-box{grid-template-columns:1fr}
+.grid{grid-template-columns:1fr}
+.hero{padding-top:58px}
+.docs-grid img{height:auto;max-height:none}
 }
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--light);
-  color:var(--text)
-}
-
-header{
-  background:var(--navy);
-  color:#fff;
-  padding:22px 6%
-}
-
-header h1{
-  margin:0;
-  font-size:25px
-}
-
-header p{
-  margin:5px 0 0;
-  opacity:.85
-}
-
-main{
-  max-width:1000px;
-  margin:30px auto;
-  padding:0 18px
-}
-
-.panel{
-  background:#fff;
-  border-radius:16px;
-  padding:24px;
-  box-shadow:0 10px 30px #001a3315;
-  margin-bottom:22px
-}
-
-label{
-  display:block;
-  font-weight:700;
-  margin:12px 0 6px
-}
-
-input,textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccd7e2;
-  border-radius:8px;
-  font:inherit
-}
-
-textarea{
-  min-height:130px
-}
-
-button,.btn{
-  display:inline-block;
-  border:0;
-  border-radius:8px;
-  padding:12px 17px;
-  font-weight:800;
-  cursor:pointer;
-  text-decoration:none
-}
-
-.primary{
-  background:var(--gold);
-  color:#17273b
-}
-
-.secondary{
-  background:#e8eef5;
-  color:var(--navy)
-}
-
-.danger{
-  background:#f8e1e1;
-  color:var(--danger)
-}
-
-.news{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px
-}
-
-.item{
-  border:1px solid #dde5ed;
-  border-radius:12px;
-  padding:16px
-}
-
-.item h3{
-  margin:5px 0
-}
-
-.item small{
-  color:var(--green);
-  font-weight:700
-}
-
-.item button{
-  margin-top:10px
-}
-
-.item img{
-  width:100%;
-  height:150px;
-  object-fit:cover;
-  border-radius:9px;
-  margin:8px 0
-}
-
-.notice{
-  background:#fff8e7;
-  border-left:4px solid var(--gold);
-  padding:13px;
-  border-radius:6px
-}
-
-.success{
-  background:#e9f8ed;
-  border-left:4px solid var(--green);
-  padding:13px;
-  border-radius:6px
-}
-
-.error{
-  background:#fdecec;
-  border-left:4px solid var(--danger);
-  padding:13px;
-  border-radius:6px
-}
-
-#app{
-  display:none
-}
-
-.muted{
-  color:#647386;
-  font-size:14px
-}
-
-.row{
-  display:flex;
-  gap:10px;
-  align-items:center;
-  flex-wrap:wrap
-}
-
-.topbar{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  align-items:center
-}
-
-.thumb{
-  max-width:120px;
-  max-height:90px;
-  border-radius:8px;
-  object-fit:cover
-}
-
-.hidden{
-  display:none
-}
-
-@media(max-width:700px){
-  .news{
-    grid-template-columns:1fr
-  }
-}
+.news-section{background:#f7f9fc}
+.news-kicker{display:inline-block;color:var(--green);font-weight:800;font-size:13px;letter-spacing:.08em;margin-bottom:8px}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.news-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 10px 28px #001a3318;border:1px solid #e3e9f0;display:flex;flex-direction:column}
+.news-card img{width:100%;height:190px;object-fit:cover;background:#eaf0f6}
+.news-body{padding:21px}
+.news-date{font-size:12px;font-weight:800;color:var(--green);text-transform:uppercase;letter-spacing:.05em}
+.news-card h3{color:var(--navy);font-size:21px;line-height:1.25;margin:8px 0}
+.news-card p{margin:0 0 14px}
+.news-empty{grid-column:1/-1;text-align:center;background:#fff;border:1px dashed #c8d3df;padding:30px;border-radius:15px;color:#647386}
+.admin-link{color:#f3c55c;text-decoration:none;font-size:12px}
+@media(max-width:850px){.news-grid{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>YOUNGEST’S BUSINESS — Administration</h1>
-  <p>Gestion sécurisée de la rubrique Actualités</p>
-</header>
+<nav>
+  <a href="#accueil">
+    <img class="logo" src="logo.png" alt="YOUNGEST'S BUSINESS">
+  </a>
 
-<main>
-
-  <div id="loginPanel" class="panel">
-
-    <h2>🔐 Connexion administrateur</h2>
-
-    <p class="muted">
-      Seul un compte Firebase autorisé pourra publier,
-      modifier ou supprimer les actualités.
-    </p>
-
-    <label for="email">E-mail administrateur</label>
-
-    <input
-      id="email"
-      type="email"
-      autocomplete="username"
-      placeholder="votre@email.com"
-    >
-
-    <label for="password">Mot de passe</label>
-
-    <input
-      id="password"
-      type="password"
-      autocomplete="current-password"
-      placeholder="Votre mot de passe"
-    >
-
-    <button class="primary" onclick="login()">
-      Se connecter
-    </button>
-
-    <div id="loginMsg" style="margin-top:14px"></div>
-
+  <div class="links">
+    <a href="#services">Services</a>
+    <a href="#zones">Zones</a>
+    <a href="#pret">Prêts</a>
+    <a href="#documents">Documents</a>
+    <a href="#actualites">Actualités</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
   </div>
+</nav>
 
+<header id="accueil" class="hero">
+  <div class="wrap hero-grid">
 
-  <div id="app">
+    <div>
+      <span class="badge">
+        SERVICE DE PRÊT ET D’ASSISTANCE FINANCIÈRE
+      </span>
 
-    <div class="panel">
+      <h1>YOUNGEST’S BUSINESS</h1>
 
-      <div class="topbar">
-
-        <div>
-
-          <h2 style="margin:0">
-            🔐 Administration connectée
-          </h2>
-
-          <p id="who" class="muted"></p>
-
-        </div>
-
-        <button class="secondary" onclick="logout()">
-          Se déconnecter
-        </button>
-
-      </div>
-
-      <div class="notice" style="margin-top:15px">
-
-        <strong>Important :</strong>
-        les publications sont maintenant enregistrées dans
-        Cloud Firestore. Elles pourront donc être vues par tous
-        les visiteurs, quel que soit leur téléphone.
-
-      </div>
-
-    </div>
-
-
-    <div class="panel">
-
-      <h2>➕ Nouvelle actualité</h2>
-
-      <label for="title">Titre</label>
-
-      <input
-        id="title"
-        placeholder="Ex. Nouvelle agence à Cibitoke"
-      >
-
-      <label for="date">Date d'affichage</label>
-
-      <input
-        id="date"
-        type="date"
-      >
-
-      <label for="imageFile">
-        Image (facultatif)
-      </label>
-
-      <input
-        id="imageFile"
-        type="file"
-        accept="image/*"
-      >
-
-      <p class="muted">
-        L’image est automatiquement réduite dans votre navigateur
-        puis enregistrée directement dans Firestore.
-        Aucun Firebase Storage ni abonnement Blaze n’est nécessaire.
-        Si aucune image n’est choisie, le logo sera utilisé.
+      <p>
+        <strong>
+          Des services de proximité, une vision entrepreneuriale.
+        </strong>
       </p>
 
-      <label for="text">Contenu</label>
+      <p>
+        Nous sommes un service basé dans le transfert d'argent via Mobile Money.
+        Nous accompagnons également les personnes dans leurs besoins d'aide financière,
+        notamment à travers notre service de prêt d'argent au Burundi.
+      </p>
 
-      <textarea
-        id="text"
-        placeholder="Écrivez votre annonce..."
-      ></textarea>
+      <a class="btn primary" href="#pret">
+        Découvrir le service de prêt
+      </a>
 
-
-      <div class="row">
-
-        <button
-          class="primary"
-          onclick="addNews()"
-        >
-          📢 Publier pour tous
-        </button>
-
-
-        <!-- LIEN CORRIGÉ VERS LE SITE PUBLIC -->
-
-        <a
-          class="btn secondary"
-          href="https://elishayoungest19-lab.github.io/YOUNGEST-S-BUSINESS-00/"
-        >
-          Voir le site public
-        </a>
-
-      </div>
-
-
-      <div
-        id="publishMsg"
-        style="margin-top:14px"
-      ></div>
-
+      <a class="btn outline" href="#contact">
+        Nous contacter
+      </a>
     </div>
 
+    <div class="hero-card">
+      <h2>Notre présence</h2>
 
-    <div class="panel">
+      <p>
+        <strong>🇧🇮 Burundi :</strong>
+        transfert d'argent via Mobile Money et service de prêt d'argent.
+      </p>
 
-      <h2>📋 Actualités en ligne</h2>
+      <p>
+        <strong>🇨🇩 RDC :</strong>
+        transfert d'argent et services Mobile Money.
+      </p>
 
-      <div
-        id="items"
-        class="news"
-      ></div>
-
+      <p>
+        Notre ambition est de développer progressivement des services fiables,
+        accessibles et adaptés aux besoins de nos clients.
+      </p>
     </div>
 
   </div>
-
-</main>
-
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-
-<script src="firebase-config.js"></script>
-
-
-<script>
-
-let db,auth,currentUser;
-
-try{
-
-  firebase.initializeApp(firebaseConfig);
-
-  auth=firebase.auth();
-
-  db=firebase.firestore();
-
-
-  auth.onAuthStateChanged(async user=>{
-
-    currentUser=user;
-
-    const isSignedIn=!!user;
-
-    document.getElementById('loginPanel').style.display=
-      isSignedIn ? 'none' : 'block';
-
-    document.getElementById('app').style.display=
-      isSignedIn ? 'block' : 'none';
-
-
-    if(user){
-
-      document.getElementById('who').textContent=
-        'Connecté : '+user.email+
-        ' • UID : '+user.uid;
-
-      await render();
-
-    }
-
-  });
-
-
-}catch(e){
-
-  document.getElementById('loginMsg').innerHTML=
-    '<div class="error">'+
-    'Configuration Firebase manquante ou incorrecte. '+
-    'Consultez le fichier SETUP_FIREBASE.md.'+
-    '</div>';
-
-}
-
-
-function esc(v){
-
-  return String(v??'').replace(
-    /[&<>"']/g,
-    m=>({
-      '&':'&amp;',
-      '<':'&lt;',
-      '>':'&gt;',
-      '"':'&quot;',
-      "'":'&#039;'
-    }[m])
-  );
-
-}
-
-
-function login(){
-
-  const email=
-    document.getElementById('email').value.trim();
-
-  const password=
-    document.getElementById('password').value;
-
-
-  if(!email||!password){
-
-    show(
-      'loginMsg',
-      'Veuillez saisir l’e-mail et le mot de passe.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  auth
-    .signInWithEmailAndPassword(email,password)
-    .catch(e=>
-      show(
-        'loginMsg',
-        'Connexion refusée : '+humanError(e),
-        'error'
-      )
-    );
-
-}
-
-
-function logout(){
-
-  auth.signOut();
-
-}
-
-
-function humanError(e){
-
-  if(e.code==='auth/invalid-credential')
-    return 'e-mail ou mot de passe incorrect.';
-
-  if(e.code==='auth/too-many-requests')
-    return 'Trop de tentatives. Réessayez plus tard.';
-
-  return e.message||'Erreur inconnue.';
-
-}
-
-
-function show(id,msg,type){
-
-  document.getElementById(id).innerHTML=
-    '<div class="'+type+'">'+
-    esc(msg)+
-    '</div>';
-
-}
-
-
-async function imageToFirestoreDataUrl(file){
-
-  if(!file)
-    return 'logo.png';
-
-
-  if(!file.type.startsWith('image/'))
-    throw new Error(
-      'Veuillez choisir un fichier image.'
-    );
-
-
-  if(file.size>10*1024*1024)
-    throw new Error(
-      'L’image originale doit faire au maximum 10 Mo.'
-    );
-
-
-  const dataUrl=await new Promise(
-    (resolve,reject)=>{
-
-      const r=new FileReader();
-
-      r.onload=()=>resolve(r.result);
-
-      r.onerror=()=>
-        reject(
-          new Error(
-            'Impossible de lire l’image.'
-          )
-        );
-
-      r.readAsDataURL(file);
-
-    }
-  );
-
-
-  const img=await new Promise(
-    (resolve,reject)=>{
-
-      const i=new Image();
-
-      i.onload=()=>resolve(i);
-
-      i.onerror=()=>
-        reject(
-          new Error(
-            'Impossible de traiter l’image.'
-          )
-        );
-
-      i.src=dataUrl;
-
-    }
-  );
-
-
-  const maxSide=1000;
-
-  const scale=Math.min(
-    1,
-    maxSide/Math.max(
-      img.width,
-      img.height
-    )
-  );
-
-
-  const w=Math.max(
-    1,
-    Math.round(img.width*scale)
-  );
-
-  const h=Math.max(
-    1,
-    Math.round(img.height*scale)
-  );
-
-
-  const canvas=
-    document.createElement('canvas');
-
-  canvas.width=w;
-
-  canvas.height=h;
-
-
-  const ctx=canvas.getContext('2d');
-
-  ctx.fillStyle='#ffffff';
-
-  ctx.fillRect(
-    0,
-    0,
-    w,
-    h
-  );
-
-  ctx.drawImage(
-    img,
-    0,
-    0,
-    w,
-    h
-  );
-
-
-  let quality=.72;
-
-  let out='';
-
-
-  for(let i=0;i<5;i++){
-
-    out=
-      canvas.toDataURL(
-        'image/jpeg',
-        quality
-      );
-
-    if(out.length<=520000)
-      break;
-
-    quality-=.10;
-
-  }
-
-
-  if(out.length>600000)
-    throw new Error(
-      'Cette image reste trop lourde après compression. '+
-      'Choisissez une image plus petite.'
-   
+</header>
+
+<section id="services">
+<div class="wrap">
+
+  <div class="title">
+    <h2>Nos services</h2>
+    <p>
+      Une activité organisée autour de services financiers et de proximité.
+    </p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card service">
+      <div class="icon">💸</div>
+      <h3>Transfert d'argent</h3>
+      <p>
+        Services de transfert d'argent via les solutions Mobile Money
+        disponibles dans nos zones d'activité.
+      </p>
+    </div>
+
+    <div class="card service">
+      <div class="icon">📱</div>
+      <h3>Mobile Money</h3>
+      <p>
+        Dépôt, retrait, enregistrement et autres opérations selon les
+        services et opérateurs disponibles.
+      </p>
+    </div>
+
+    <div class="card service">
+      <div class="icon">💰</div>
+      <h3>Prêt d'argent</h3>
+      <p>
+        Un service destiné aux personnes ayant besoin d'un financement,
+        avec une procédure et des conditions définies avant l'opération.
+      </p>
+    </div>
+
+    <div class="card service">
+      <div class="icon">🔄</div>
+      <h3>Swap direct</h3>
+      <p>
+        Solutions d'échange et opérations de proximité selon les possibilités disponibles.
+      </p>
+    </div>
+
+    <div class="card service">
+      <div class="icon">🔐</div>
+      <h3>Assistance Mobile Money</h3>
+      <p>
+        Accompagnement pour certaines opérations de compte, de mise à jour
+        ou de récupération selon les procédures autorisées.
+      </p>
+    </div>
+
+    <div class="card service">
+      <div class="icon">🌍</div>
+      <h3>Développement régional</h3>
+      <p>
+        Une vision de croissance progressive au Burundi, en RDC et à terme
+        dans d'autres marchés de la région.
+      </p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section id="zones" class="region">
+<div class="wrap">
+
+  <div class="title">
+    <h2>Nos zones d'activité</h2>
+    <p>
+      YOUNGEST'S BUSINESS est présent au Burundi et en RDC.
+    </p>
+  </div>
+
+  <div class="two">
+
+    <div class="card">
+      <h3>🇧🇮 Burundi</h3>
+
+      <p>Nous sommes présents à :</p>
+
+      <ul>
+        <li>Cibitoke — 4e Avenue</li>
+        <li>Cibitoke — 17e Avenue</li>
+        <li>Carama — Bujumbura</li>
+      </ul>
+
+      <p>
+        <strong>Service :</strong>
+        transfert d'argent, Mobile Money et service de prêt.
+      </p>
+
+      <p>
+        <strong>Contact :</strong><br>
+        +257 667 966 15
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🇨🇩 République démocratique du Congo</h3>
+
+      <p>Nous sommes présents à :</p>
+
+      <ul>
+        <li>Kalemie — Kahinda Lodje</li>
+        <li>Maniema</li>
+        <li>Fizi</li>
+      </ul>
+
+      <p>
+        <strong>Service :</strong>
+        transfert d'argent et services Mobile Money.
+      </p>
+
+      <p>
+        <strong>Contacts :</strong><br>
+        +243 817 447 127<br>
+        +243 994 565 534
+      </p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section id="pret" class="loan">
+<div class="wrap">
+
+  <div class="title">
+    <h2>Service de prêt d'argent</h2>
+    <p>
+      Un processus clair avant toute décision de financement.
+    </p>
+  </div>
+
+  <div class="loan-grid">
+
+    <div class="card">
+      <h3>Conditions principales</h3>
+
+      <ol class="steps">
+        <li>Lire et compléter la lettre d'engagement.</li>
+        <li>Prendre connaissance du taux et accepter les conditions convenues.</li>
+        <li>Présenter une garantie conforme aux conditions du prêt.</li>
+        <li>Respecter les consignes et le délai prévu pour le remboursement.</li>
+      </ol>
+
+      <div class="notice">
+        <strong>Important :</strong>
+        les taux, garanties, frais, échéances et modalités définitives
+        doivent être confirmés avant signature et doivent respecter
+        la réglementation applicable.
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Comment demander un prêt ?</h3>
+
+      <p>1. Remplissez la fiche de demande.</p>
+      <p>2. Préparez les informations et pièces demandées.</p>
+      <p>3. Prenez connaissance des conditions.</p>
+      <p>4. Soumettez votre demande pour étude.</p>
+
+      <a class="btn primary" href="#demande">
+        Remplir une demande en ligne
+      </a>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section id="documents" class="documents">
+<div class="wrap">
+
+  <div class="title">
+    <h2>Documents du service de prêt</h2>
+    <p>
+      Les documents que nous utilisons pour encadrer la demande et l'engagement.
+    </p>
+  </div>
+
+  <div class="docs-grid">
+
+    <div class="card">
+      <h3>Fiche de demande / lettre d'engagement</h3>
+
+      <img
+        src="fiche_demande_pret.png"
+        alt="Fiche de demande et lettre d'engagement YOUNGEST'S BUSINESS"
+      >
+
+      <div class="doc-actions">
+        <a
+          class="btn primary"
+          href="fiche_demande_pret.png"
+          download
+        >
+          Télécharger la fiche
+        </a>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Conditions d'emprunt</h3>
+
+      <img
+        src="conditions_pret.jpg"
+        alt="Conditions d'emprunt YOUNGEST'S BUSINESS"
+      >
+
+      <div class="doc-actions">
+        <a
+          class="btn primary"
+          href="conditions_pret.jpg"
+          download
+        >
+          Télécharger les conditions
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section id="demande" class="form-section">
+<div class="wrap">
+
+  <div class="title">
+    <h2>Demande d'information / de prêt</h2>
+    <p>
+      Votre demande sera transmise par WhatsApp.
+      Elle ne constitue pas une acceptation automatique du prêt.
+    </p>
+  </div>
+
+  <div class="card">
+
+    <form onsubmit="sendLoan(event)">
+
+      <div class="two">
+        <input id="nom"
