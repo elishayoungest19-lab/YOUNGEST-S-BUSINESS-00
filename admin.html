@@ -213,6 +213,7 @@ button,.btn{
     </p>
 
     <label for="email">E-mail administrateur</label>
+
     <input
       id="email"
       type="email"
@@ -221,6 +222,7 @@ button,.btn{
     >
 
     <label for="password">Mot de passe</label>
+
     <input
       id="password"
       type="password"
@@ -244,11 +246,13 @@ button,.btn{
       <div class="topbar">
 
         <div>
+
           <h2 style="margin:0">
             🔐 Administration connectée
           </h2>
 
           <p id="who" class="muted"></p>
+
         </div>
 
         <button class="secondary" onclick="logout()">
@@ -322,11 +326,7 @@ button,.btn{
         </button>
 
 
-        <!--
-          CORRECTION :
-          Le bouton ouvre maintenant directement
-          le site public GitHub Pages.
-        -->
+        <!-- LIEN CORRIGÉ VERS LE SITE PUBLIC -->
 
         <a
           class="btn secondary"
@@ -635,264 +635,4 @@ async function imageToFirestoreDataUrl(file){
     throw new Error(
       'Cette image reste trop lourde après compression. '+
       'Choisissez une image plus petite.'
-    );
-
-
-  return out;
-
-}
-
-
-async function addNews(){
-
-  if(!currentUser)
-    return;
-
-
-  const title=
-    document.getElementById('title')
-    .value.trim();
-
-
-  const date=
-    document.getElementById('date')
-    .value;
-
-
-  const text=
-    document.getElementById('text')
-    .value.trim();
-
-
-  const file=
-    document.getElementById('imageFile')
-    .files[0];
-
-
-  if(!title||!date||!text){
-
-    show(
-      'publishMsg',
-      'Veuillez remplir le titre, la date et le contenu.',
-      'error'
-    );
-
-    return;
-
-  }
-
-
-  const btn=
-    document.querySelector(
-      '#app .primary'
-    );
-
-
-  btn.disabled=true;
-
-
-  show(
-    'publishMsg',
-    'Préparation de l’image et publication…',
-    'notice'
-  );
-
-
-  try{
-
-    const image=
-      await imageToFirestoreDataUrl(file);
-
-
-    await db
-      .collection('news')
-      .add({
-
-        title,
-        date,
-        text,
-        image,
-        published:true,
-
-        createdAt:
-          firebase.firestore
-          .FieldValue
-          .serverTimestamp(),
-
-        createdBy:
-          currentUser.uid
-
-      });
-
-
-    document.getElementById('title')
-      .value='';
-
-    document.getElementById('text')
-      .value='';
-
-    document.getElementById('imageFile')
-      .value='';
-
-
-    show(
-      'publishMsg',
-      '✅ Actualité publiée. Elle est maintenant disponible sur le site public.',
-      'success'
-    );
-
-
-    await render();
-
-
-  }catch(e){
-
-    show(
-      'publishMsg',
-      'Publication impossible : '+humanError(e),
-      'error'
-    );
-
-
-  }finally{
-
-    btn.disabled=false;
-
-  }
-
-}
-
-
-async function render(){
-
-  const box=
-    document.getElementById('items');
-
-
-  box.innerHTML=
-    '<p class="muted">Chargement…</p>';
-
-
-  try{
-
-    const snap=
-      await db
-        .collection('news')
-        .get();
-
-
-    const docs=
-      snap.docs.map(
-        d=>({
-          id:d.id,
-          ...d.data()
-        })
-      );
-
-
-    docs.sort(
-      (a,b)=>
-        (b.createdAt?.seconds||0)-
-        (a.createdAt?.seconds||0)
-    );
-
-
-    box.innerHTML=
-      docs.length
-      ?
-      docs.map(
-        x=>
-        `<div class="item">
-          ${
-            x.image
-            ?
-            `<img
-              src="${esc(x.image)}"
-              alt=""
-            >`
-            :
-            ''
-          }
-
-          <small>
-            ${esc(x.date)}
-          </small>
-
-          <h3>
-            ${esc(x.title)}
-          </h3>
-
-          <p>
-            ${esc(x.text)}
-          </p>
-
-          <div class="row">
-
-            <button
-              class="danger"
-              onclick="removeNews('${esc(x.id)}')"
-            >
-              Supprimer
-            </button>
-
-          </div>
-
-        </div>`
-      ).join('')
-
-      :
-
-      '<p class="muted">'+
-      'Aucune actualité publiée pour le moment.'+
-      '</p>';
-
-
-  }catch(e){
-
-    box.innerHTML=
-      '<div class="error">'+
-      'Impossible de charger les actualités : '+
-      esc(humanError(e))+
-      '</div>';
-
-  }
-
-}
-
-
-async function removeNews(id){
-
-  if(
-    !confirm(
-      'Supprimer définitivement cette actualité ?'
-    )
-  )
-    return;
-
-
-  try{
-
-    await db
-      .collection('news')
-      .doc(id)
-      .delete();
-
-
-    await render();
-
-
-  }catch(e){
-
-    alert(
-      'Suppression refusée : '+
-      humanError(e)
-    );
-
-  }
-
-}
-
-</script>
-
-</body>
-</html>
+   
